@@ -18,11 +18,21 @@ namespace ImageS
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : HandyControl.Controls.Window
     {
         public MainWindow()
         {
             InitializeComponent();
+            this.Title.Header = SystemBackdropType.ToString();
         }
+
+        int Count = 0;
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.SystemBackdropType = (HandyControl.Tools.BackdropType)((++Count) % 5 + 1);
+            this.Title.Header = SystemBackdropType.ToString();
+        }
+        
     }
 }
