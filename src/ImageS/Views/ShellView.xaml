@@ -21,10 +21,7 @@
                 FontWeight="Bold"
                 Text="ImageS" />
 
-            <StackPanel
-                x:Name="MenuPresent"
-                HorizontalAlignment="Left"
-                Orientation="Horizontal" />
+            <local:MenuView x:Name="MenuPresent" HorizontalAlignment="Left" />
 
             <Label
                 x:Name="FpsLabel"
@@ -47,6 +44,7 @@
                 BorderThickness="1"
                 CornerRadius="8"
                 SnapsToDevicePixels="True" />
+            <local:GalleryView x:Name="GalleryPresent" />
         </hc:SimplePanel>
 
         <Border

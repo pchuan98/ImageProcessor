@@ -38,7 +38,7 @@ public class Image : IDisposable
     public Image() { }
 
     public Image(string path)
-        => Src = Cv2.ImRead(path, (ImreadModes)(-1));
+        => Src = Cv2.ImRead(path);
 
     public Image(Image image)
         => image.Src.CopyTo(Src);

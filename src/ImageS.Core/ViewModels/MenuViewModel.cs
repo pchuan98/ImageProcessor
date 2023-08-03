@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -30,7 +31,14 @@ public partial class MenuViewModel : ObservableObject
 
         foreach (var path in collection)
         {
-            
+            var msg = WeakReferenceMessenger.Default.Send<IoMessenger.ReadMessage>(new IoMessenger.ReadMessage()
+            {
+                Path = path
+            });
+
+            var img = msg.Response;
+
+            WeakReferenceMessenger.Default.Send<GalleryMessenger.AddImageMessage>(new GalleryMessenger.AddImageMessage(img));
         }
     }
 }
