@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ImageProcessor.Common.Constant;
+using ImageProcessor.Services;
 using OpenCvSharp;
 
 
@@ -20,7 +21,7 @@ public class Image : IDisposable
     /// <summary>
     /// 处理对象
     /// </summary>
-    Mat? Src { get; set; }
+    internal Mat Src { get; set; } = new();
 
     /// <summary>
     /// 
@@ -37,16 +38,14 @@ public class Image : IDisposable
     public Image() { }
 
     public Image(string path)
-    {
-
-    }
+        => Src = Cv2.ImRead(path, (ImreadModes)(-1));
 
     public Image(Image image)
-    {
-    }
+        => image.Src.CopyTo(Src);
 
     public Image(byte[] array, ImageType type)
     {
+
     }
 
     public Image(Stream stream)

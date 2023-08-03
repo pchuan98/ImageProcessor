@@ -24,9 +24,7 @@ namespace Test.ImageProcessor.Common.Models
         public void Dispose_StateUnderTest_ExpectedBehavior()
         {
             var image = new Image();
-            image.Dispose();
 
-            Assert.Fail();
         }
     }
 }

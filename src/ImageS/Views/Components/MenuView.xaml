@@ -1,0 +1,39 @@
+﻿<UserControl
+    x:Class="ImageS.Views.MenuView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:ImageS.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModels="clr-namespace:ImageS.Core.ViewModels;assembly=ImageS.Core"
+    d:DataContext="{d:DesignInstance viewModels:MenuViewModel}"
+    mc:Ignorable="d">
+    <Menu>
+        <MenuItem Header="File">
+            <MenuItem Command="{Binding ReadWithDialogCommand}" Header="Open" />
+            <MenuItem Header="Save" />
+            <MenuItem Header="Save As.." />
+        </MenuItem>
+
+        <MenuItem Header="Image">
+            <MenuItem Header="Converter">
+                <MenuItem Header="Bit">
+                    <MenuItem Header="8-bit" />
+                    <MenuItem Header="16-bit" />
+                    <MenuItem Header="32-bit" />
+                </MenuItem>
+                <MenuItem Header="ColorSpace">
+                    <MenuItem Header="RGB" />
+                    <MenuItem Header="BGR" />
+                    <MenuItem Header="HSV" />
+                    <MenuItem Header="HLS" />
+                    <MenuItem Header="Lab" />
+                </MenuItem>
+                <MenuItem Header="ToBinary" />
+                <MenuItem Header="ToGray" />
+            </MenuItem>
+            <MenuItem Header="Save" />
+            <MenuItem Header="Save As.." />
+        </MenuItem>
+    </Menu>
+</UserControl>
