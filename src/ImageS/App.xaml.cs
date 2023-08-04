@@ -1,8 +1,8 @@
 ﻿using System.Windows;
 using System.Windows.Media;
 using CommunityToolkit.Mvvm.Messaging;
+using ImageS.Core.Messenger;
 using ImageS.Core.ViewModels;
-using ImageS.Core.ViewModels.Command;
 using ImageS.Services;
 using ImageS.Views;
 using Microsoft.Extensions.DependencyInjection;
@@ -25,11 +25,12 @@ namespace ImageS
             Ioc.AddSingleton<Core.Services.ILogService, LogService>();
 
             // viewmodels
+            Ioc.AddSingleton<ShellViewModel>();
+
             Ioc.AddSingleton<MenuViewModel>();
             Ioc.AddSingleton<GalleryViewModel>();
             Ioc.AddSingleton<PresentViewModel>();
-            Ioc.AddSingleton<ShellViewModel>();
-
+            Ioc.AddSingleton<StatusViewModel>();
 
             // windows
             Ioc.AddSingleton<ShellView>(s => new ShellView()
@@ -37,10 +38,14 @@ namespace ImageS
                 DataContext = s.GetRequiredService<ShellViewModel>(),
                 Background = Brushes.White
             });
+            Ioc.AddSingleton<ProcessorView>(s => new ProcessorView()
+            {
+                Background = Brushes.White
+            });
 
             // Listeners
-            Ioc.AddSingleton<IMessenger, WeakReferenceMessenger>();
             Ioc.AddSingleton<Core.Listener.IoListener>();
+            Ioc.AddSingleton<Core.Listener.ImageProcessorListener>();
         }
         public App()
         {
@@ -64,8 +69,11 @@ namespace ImageS
         private static void KeepLive()
         {
             // note : don't create and get in the same function,the object will be arbage collected
-            var ioc = Ioc.BuildServiceProvider().GetService<Core.Listener.IoListener>();
-            KeepAlive[0] = ioc;
+            var io = Ioc.BuildServiceProvider().GetService<Core.Listener.IoListener>();
+            var pro = Ioc.BuildServiceProvider().GetService<Core.Listener.ImageProcessorListener>();
+
+            KeepAlive[0] = io;
+            KeepAlive[1] = pro;
         }
 
         private void App_OnStartup(object sender, StartupEventArgs e)
@@ -79,8 +87,19 @@ namespace ImageS
             // components
             main!.MenuPresent.DataContext = Ioc.BuildServiceProvider().GetService<MenuViewModel>();
             main!.GalleryPresent.DataContext = Ioc.BuildServiceProvider().GetService<GalleryViewModel>();
+            main!.ImagePresent.DataContext = Ioc.BuildServiceProvider().GetService<PresentViewModel>();
+            main!.StatusPanel.DataContext = Ioc.BuildServiceProvider().GetService<StatusViewModel>();
 
             main.Show();
+            WeakReferenceMessenger.Default.Send<InfoMessenger.RightStatusMessage>(new InfoMessenger.RightStatusMessage("这是一个状态测试文本，当前未使用(右)"));
+            WeakReferenceMessenger.Default.Send<InfoMessenger.LeftStatusMessage>(new InfoMessenger.LeftStatusMessage("这是一个状态测试文本，当前未使用(左)"));
+            //main.Close();
+
+
+            var processor = Ioc.BuildServiceProvider().GetService<ProcessorView>();
+            //processor!.Show();
+
+           
         }
     }
 }

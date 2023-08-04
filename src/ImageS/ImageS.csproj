@@ -12,6 +12,8 @@
 		<PackageReference Include="HandyControls" Version="3.4.5" />
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
 		<PackageReference Include="OpenCvSharp4.runtime.win" Version="4.8.0.20230708" />
+		<PackageReference Include="OpenCvSharp4.WpfExtensions" Version="4.8.0.20230708" />
+
 	</ItemGroup>
 
 	<!--https://ghost1372.github.io/handycontrol/intellisense/-->

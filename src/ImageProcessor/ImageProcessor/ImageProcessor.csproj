@@ -5,13 +5,9 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		<PublishSingleFile>true</PublishSingleFile>
-		<DebugType>embedded</DebugType>
+		<DebugType>embedded</DebugType> 
 		<EnableCompressionInSingleFile>true</EnableCompressionInSingleFile>
 	</PropertyGroup>
-
-	<ItemGroup>
-		<Folder Include="Extensions\" />
-	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="OpenCvSharp4" Version="4.8.0.20230708" />

@@ -13,15 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-// ReSharper disable once CheckNamespace
-namespace ImageS.Views
+namespace ImageS.Views.Processors
 {
     /// <summary>
-    /// Interaction logic for PresentView.xaml
+    /// Interaction logic for SpatialFiltering.xaml
     /// </summary>
-    public partial class PresentView : UserControl
+    public partial class SpatialFiltering : UserControl
     {
-        public PresentView()
+        public SpatialFiltering()
         {
             InitializeComponent();
         }

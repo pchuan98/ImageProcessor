@@ -1,0 +1,50 @@
+﻿<hc:Window
+    x:Class="ImageS.Views.ProcessorView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:hc="https://handyorg.github.io/handycontrol"
+    xmlns:local="clr-namespace:ImageS.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:processors="clr-namespace:ImageS.Views.Processors"
+    Width="800"
+    Height="450"
+    SystemBackdropType="Mica"
+    Topmost="True"
+    mc:Ignorable="d">
+    <hc:Window.NonClientAreaContent>
+        <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+            <TextBlock
+                Margin="0,0,10,0"
+                VerticalAlignment="Center"
+                hc:WindowAttach.IsDragElement="True"
+                FontSize="14"
+                FontWeight="Bold"
+                Text="Processor" />
+            <Label
+                x:Name="FpsLabel"
+                Margin="5,0"
+                Padding="0"
+                HorizontalAlignment="Center"
+                BorderThickness="0"
+                FontWeight="Bold"
+                Foreground="Red" />
+        </StackPanel>
+    </hc:Window.NonClientAreaContent>
+
+    <TabControl TabStripPlacement="Top">
+        <TabItem Header="Spatial Filtering">
+            <processors:SpatialFiltering />
+        </TabItem>
+        <TabItem Header="Frequency Domain Filtering">
+            <Label HorizontalAlignment="Center" HorizontalContentAlignment="Center">频率域滤波 还没做完</Label>
+        </TabItem>
+        <TabItem Header="Image Restoration">
+            <Label HorizontalAlignment="Center" HorizontalContentAlignment="Center">图像复原 还没做完</Label>
+        </TabItem>
+        <TabItem Header="Image Reconstruction">
+            <Label HorizontalAlignment="Center" HorizontalContentAlignment="Center">图像重建 还没做完</Label>
+        </TabItem>
+    </TabControl>
+
+</hc:Window>

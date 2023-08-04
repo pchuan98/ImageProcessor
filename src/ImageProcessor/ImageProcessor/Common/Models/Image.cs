@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,6 +23,8 @@ public class Image : IDisposable
     /// 处理对象
     /// </summary>
     internal Mat Src { get; set; } = new();
+
+    public Mat GetSrc() => Src;
 
     /// <summary>
     /// 
