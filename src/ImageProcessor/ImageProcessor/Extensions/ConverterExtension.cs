@@ -20,7 +20,7 @@ public static class ConverterExtension
 {
     public static bool ToGray(this Image image)
     {
-        Cv2.CvtColor(image.Src, image.Src, ColorConversionCodes.BGR2GRAY);
+        Cv2.CvtColor(image.Original, image.Present, ColorConversionCodes.BGR2GRAY);
         return true;
     }
 

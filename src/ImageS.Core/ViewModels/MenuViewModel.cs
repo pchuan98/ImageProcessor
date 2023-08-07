@@ -45,10 +45,9 @@ public partial class MenuViewModel : ObservableObject
     [RelayCommand]
     public void ConverterImage(string func)
     {
-        var image = WeakReferenceMessenger.Default.Send<GalleryMessenger.GetSelectedImageMessage>().Response;
+        var image = MessageManager.GetSelectedImage();
 
-        if (image == null) return;
-        WeakReferenceMessenger.Default.Send<ImageProcessorMessenger.ImageProcessorConverterMessage>
-            (new ImageProcessorMessenger.ImageProcessorConverterMessage(image, func));
+        WeakReferenceMessenger.Default.Send<ImageProcessorMessenger.ConverterMessage>
+            (new ImageProcessorMessenger.ConverterMessage(image, func));
     }
 }

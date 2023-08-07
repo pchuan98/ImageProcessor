@@ -12,6 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ImageProcessor.Common.Models;
+using ImageS.Core.ViewModels;
+using Image = ImageProcessor.Common.Models.Image;
 
 namespace ImageS.Views
 {
@@ -23,6 +26,19 @@ namespace ImageS.Views
         public GalleryView()
         {
             InitializeComponent();
+        }
+
+
+        private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var view = sender as ListView;
+            var vm = this.DataContext as GalleryViewModel;
+
+            if (view == null || vm == null) return;
+
+            if (view.SelectedIndex == -1) return;
+
+            vm.SelectedImage = view.SelectedItem as Image;
         }
     }
 }

@@ -30,6 +30,7 @@ public partial class GalleryViewModel : ObservableObject,
     private ObservableCollection<Image> _images
             = new ObservableCollection<Image>();
 
+
     /// <summary>
     /// 
     /// </summary>
@@ -37,8 +38,11 @@ public partial class GalleryViewModel : ObservableObject,
     private Image? _selectedImage;
 
     partial void OnSelectedImageChanged(Image? value)
-        => WeakReferenceMessenger.Default.Send<PresentMessenger.SwitchPresentMessage>(
-            new PresentMessenger.SwitchPresentMessage(value));
+    {
+        if (value != null)
+            WeakReferenceMessenger.Default.Send<PresentMessenger.SwitchPresentMessage>(
+                new PresentMessenger.SwitchPresentMessage(value));
+    }
 
 
     #region Receive
@@ -48,7 +52,7 @@ public partial class GalleryViewModel : ObservableObject,
         WeakReferenceMessenger.Default.Register<GalleryMessenger.AddImageMessage>(this);
         WeakReferenceMessenger.Default.Register<GalleryMessenger.GetSelectedImageMessage>(this);
         WeakReferenceMessenger.Default.Register<GalleryMessenger.RefreshThumbnailsMessage>(this);
-        
+
     }
 
     public void Receive(GalleryMessenger.AddImageMessage message)
@@ -62,11 +66,11 @@ public partial class GalleryViewModel : ObservableObject,
         var index = Images.IndexOf(message.ImageObject!);
 
         var img = Images[index];
-         
+
 
         Images[index] = null!;
         Images[index] = img;
-         
+
     }
 
     #endregion

@@ -31,6 +31,7 @@ namespace ImageS
             Ioc.AddSingleton<GalleryViewModel>();
             Ioc.AddSingleton<PresentViewModel>();
             Ioc.AddSingleton<StatusViewModel>();
+            Ioc.AddSingleton<ProcessorViewModel>();
 
             // windows
             Ioc.AddSingleton<ShellView>(s => new ShellView()
@@ -40,6 +41,7 @@ namespace ImageS
             });
             Ioc.AddSingleton<ProcessorView>(s => new ProcessorView()
             {
+                DataContext = s.GetRequiredService<ProcessorViewModel>(),
                 Background = Brushes.White
             });
 
@@ -95,11 +97,20 @@ namespace ImageS
             WeakReferenceMessenger.Default.Send<InfoMessenger.LeftStatusMessage>(new InfoMessenger.LeftStatusMessage("这是一个状态测试文本，当前未使用(左)"));
             //main.Close();
 
+            //// read a image
+            //var path = @"C:\Users\haeer\Pictures\1.jpg";
+            //var msg = WeakReferenceMessenger.Default.Send<IoMessenger.ReadMessage>(new IoMessenger.ReadMessage()
+            //{
+            //    Path = path
+            //});
 
-            var processor = Ioc.BuildServiceProvider().GetService<ProcessorView>();
+            //WeakReferenceMessenger.Default.Send<GalleryMessenger.AddImageMessage>(new GalleryMessenger.AddImageMessage(msg.Response));
+
+            //var processor = Ioc.BuildServiceProvider().GetService<ProcessorView>();
+
             //processor!.Show();
 
-           
+
         }
     }
 }

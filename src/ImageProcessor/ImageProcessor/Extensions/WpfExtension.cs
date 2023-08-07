@@ -23,7 +23,7 @@
 //    public static bool ToBitmapSourceThumbnail(this Image image, out BitmapSource source, double compression = 0.1)
 //    {
 //        var tn = new Mat();
-//        Cv2.Resize(image.Src, tn, new Size(0, 0), compression, compression);
+//        Cv2.Resize(image.Original, tn, new Size(0, 0), compression, compression);
 
 //        source = tn.ToBitmapSource();
 //        return true;
@@ -31,7 +31,7 @@
 
 //    public static bool ToBitmapSource(this Image image, out BitmapSource source)
 //    {
-//        source = image.Src.ToBitmapSource();
+//        source = image.Original.ToBitmapSource();
 //        return true;
 //    }
 //}

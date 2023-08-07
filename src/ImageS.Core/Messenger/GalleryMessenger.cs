@@ -8,7 +8,7 @@ using ImageProcessor.Common.Models;
 
 namespace ImageS.Core.Messenger;
 
-public class GalleryMessenger
+public static class GalleryMessenger
 {
     public record AddImageMessage(Image ImageObject);
 

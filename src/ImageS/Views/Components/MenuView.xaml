@@ -39,5 +39,7 @@
             <MenuItem Header="Save" />
             <MenuItem Header="Save As.." />
         </MenuItem>
+
+        <MenuItem Click="MenuItem_Click" Header="Processor" />
     </Menu>
 </UserControl>

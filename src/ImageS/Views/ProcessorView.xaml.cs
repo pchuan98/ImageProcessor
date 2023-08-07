@@ -1,5 +1,6 @@
 ﻿using HandyControl.Controls;
 using System;
+using System.ComponentModel;
 using System.Windows.Media;
 
 namespace ImageS.Views
@@ -14,6 +15,13 @@ namespace ImageS.Views
             InitializeComponent();
 
             CompositionTarget.Rendering += CompositionTarget_Rendering;
+
+            ImageS.Helper.WindowHelper.LoadSizeAndPosition(this);
+        }
+
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            ImageS.Helper.WindowHelper.SaveSizeAndPosition(this);
         }
 
         private int _frameCount = 0;
@@ -34,5 +42,7 @@ namespace ImageS.Views
                 _lastTime = now;
             }
         }
+
+        
     }
 }

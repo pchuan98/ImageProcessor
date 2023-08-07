@@ -6,12 +6,54 @@
     xmlns:hc="https://handyorg.github.io/handycontrol"
     xmlns:local="clr-namespace:ImageS.Views.Processors"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModels="clr-namespace:ImageS.Core.ViewModels;assembly=ImageS.Core"
+    d:DataContext="{d:DesignInstance viewModels:ProcessorViewModel}"
     mc:Ignorable="d">
     <StackPanel Margin="5" Orientation="Vertical">
         <GroupBox hc:TitleElement.TitlePlacement="Left" Header="Grayscale Transformation">
-            <UniformGrid Rows="5">
-                <Label Content="Image inversion" />
-            </UniformGrid>
+            <StackPanel>
+                <GroupBox
+                    Height="70"
+                    hc:TitleElement.TitlePlacement="Left"
+                    Header="Inversion">
+                    <UniformGrid Columns="3">
+                        <TextBox
+                            Margin="5,0"
+                            hc:TitleElement.Title="Minimum (0-255)"
+                            hc:TitleElement.TitlePlacement="Top"
+                            Style="{DynamicResource TextBoxExtend}"
+                            Text="{Binding SpatialFiltering.Inversion.Min}" />
+                        <TextBox
+                            Margin="5,0"
+                            hc:TitleElement.Title="Maximum (0-255)"
+                            hc:TitleElement.TitlePlacement="Top"
+                            Style="{DynamicResource TextBoxExtend}"
+                            Text="{Binding SpatialFiltering.Inversion.Max}" />
+                        <TextBox
+                            Margin="5,0"
+                            hc:TitleElement.Title="Threshold (0-255)"
+                            hc:TitleElement.TitlePlacement="Top"
+                            Style="{DynamicResource TextBoxExtend}"
+                            Text="{Binding SpatialFiltering.Inversion.ThreadShold}" />
+                    </UniformGrid>
+                </GroupBox>
+
+
+
+            </StackPanel>
         </GroupBox>
+
+        <UniformGrid Margin="5" Columns="2">
+            <Button
+                Height="40"
+                HorizontalAlignment="Stretch"
+                Command="{Binding ResetCommand}"
+                Content="Reset" />
+            <Button
+                Height="40"
+                HorizontalAlignment="Stretch"
+                Command="{Binding FixedCommand}"
+                Content="Fixed" />
+        </UniformGrid>
     </StackPanel>
 </UserControl>

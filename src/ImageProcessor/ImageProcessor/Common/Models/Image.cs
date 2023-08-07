@@ -11,6 +11,8 @@ using OpenCvSharp;
 
 namespace ImageProcessor.Common.Models;
 
+using static System.Net.Mime.MediaTypeNames;
+
 #if NET35
 using DirectoryList = System.Collections.Generic.IList<MetadataExtractor.Directory>;
 #else
@@ -20,11 +22,16 @@ using DirectoryList = System.Collections.Generic.IReadOnlyList<MetadataExtractor
 public class Image : IDisposable
 {
     /// <summary>
-    /// 处理对象
+    /// 原始对象
     /// </summary>
-    internal Mat Src { get; set; } = new();
+    internal Mat Original { get; set; } = new();
 
-    public Mat GetSrc() => Src;
+    public Mat GetOriginal() => Original;
+
+    /// <summary>
+    /// 处理对象，用来承载显示效果
+    /// </summary>
+    public Mat Present { get; set; } = new();
 
     /// <summary>
     /// 
@@ -41,10 +48,17 @@ public class Image : IDisposable
     public Image() { }
 
     public Image(string path)
-        => Src = Cv2.ImRead(path);
+    {
+        Original = Cv2.ImRead(path);
+        Original.CopyTo(Present);
+
+    }
 
     public Image(Image image)
-        => image.Src.CopyTo(Src);
+    {
+        image.Original.CopyTo(Original);
+        image.Present.CopyTo(Present);
+    }
 
     public Image(byte[] array, ImageType type)
     {
@@ -58,9 +72,19 @@ public class Image : IDisposable
 
     #endregion
 
+    /// <summary>
+    /// 
+    /// </summary>
+    public void Fixed() => Present.CopyTo(Original);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public void Reset() => Original.CopyTo(Present);
 
     public void Dispose()
     {
-        Src?.Dispose();
+        Original?.Dispose();
+        Present?.Dispose();
     }
 }
